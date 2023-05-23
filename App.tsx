@@ -4,7 +4,7 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Home } from './screens/Home';
+import { Home } from 'screens/Home'; 
 
 SplashScreen.preventAutoHideAsync();
 
