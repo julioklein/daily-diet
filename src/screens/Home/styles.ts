@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: rgb(80, 105, 216);
+  background-color: ${({theme}) => theme.COLORS.GREEN_DARK};
 `;
 
 export const ScreenTitle = styled.Text`

@@ -1,10 +1,12 @@
 import { useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import { ThemeProvider } from 'styled-components/native';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Home } from 'screens/Home'; 
+import { Home } from 'screens/Home';
+import theme from './src/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,8 +28,10 @@ export default function App() {
 
   return (
     <SafeAreaView onLayout={onLayoutRootView} style={styles.container}>
-      <StatusBar style="auto" />
-      <Home />
+      <ThemeProvider theme={theme}>
+        <StatusBar style="auto" />
+        <Home />
+      </ThemeProvider>
     </SafeAreaView>
   );
 }
