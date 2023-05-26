@@ -1,10 +1,11 @@
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { Plus } from 'phosphor-react-native';
 
 import { Button } from 'components/Button';
 import * as S from './styles';
 import { MealCard } from 'components/MealCard';
 import { OverviewCard } from 'components/OverviewCard';
+import { StatsCard } from 'components/StatsCard';
 
 const Logo = require('assets/logo/Logo.png');
 
@@ -13,6 +14,14 @@ export const Home = () => {
     <S.Container>
       <Image source={Logo} />
       <S.ScreenTitle>Home</S.ScreenTitle>
+
+      <StatsCard total={22} text='melhor sequência de pratos dentro da dieta' />
+      <StatsCard total={109} text='refeições registradas' />
+
+      <View style={{ flexDirection: 'row', width: '100%' }} >
+        <StatsCard total={99} text='refeições dentro da dieta' status='positive' />
+        <StatsCard total={10} text='refeições fora da dieta' status='negative' />
+      </View>
 
       <OverviewCard percentage={90.86} />
       <OverviewCard percentage={30.21} status='negative' />
