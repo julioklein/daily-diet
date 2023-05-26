@@ -6,6 +6,7 @@ import * as S from './styles';
 import { MealCard } from 'components/MealCard';
 import { OverviewCard } from 'components/OverviewCard';
 import { StatsCard } from 'components/StatsCard';
+import { Checkbox } from 'components/Checkbox';
 
 const Logo = require('assets/logo/Logo.png');
 
@@ -14,6 +15,16 @@ export const Home = () => {
     <S.Container>
       <Image source={Logo} />
       <S.ScreenTitle>Home</S.ScreenTitle>
+
+      <View style={{ flexDirection: 'row', width: '100%' }} >
+        <Checkbox text='Sim' />
+        <Checkbox text='Não' variant='negative' />
+      </View>
+
+      <View style={{ flexDirection: 'row', width: '100%' }} >
+        <Checkbox checked text='Sim' />
+        <Checkbox checked text='Não' variant='negative' />
+      </View>
 
       <StatsCard total={22} text='melhor sequência de pratos dentro da dieta' />
       <StatsCard total={109} text='refeições registradas' />
