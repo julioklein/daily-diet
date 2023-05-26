@@ -4,6 +4,7 @@ import { Plus } from 'phosphor-react-native';
 import { Button } from 'components/Button';
 import * as S from './styles';
 import { MealCard } from 'components/MealCard';
+import { OverviewCard } from 'components/OverviewCard';
 
 const Logo = require('assets/logo/Logo.png');
 
@@ -12,6 +13,9 @@ export const Home = () => {
     <S.Container>
       <Image source={Logo} />
       <S.ScreenTitle>Home</S.ScreenTitle>
+
+      <OverviewCard percentage={90.86} />
+      <OverviewCard percentage={30.21} status='negative' />
 
       <MealCard time='20:00' meal='X-tudo' healthy={false} />
       <MealCard time='16:00' meal='Whey protein com leite' />
