@@ -7,6 +7,7 @@ import { MealCard } from 'components/MealCard';
 import { OverviewCard } from 'components/OverviewCard';
 import { StatsCard } from 'components/StatsCard';
 import { Checkbox } from 'components/Checkbox';
+import { Badge } from 'components/Badge';
 
 const Logo = require('assets/logo/Logo.png');
 
@@ -15,6 +16,11 @@ export const Home = () => {
     <S.Container>
       <Image source={Logo} />
       <S.ScreenTitle>Home</S.ScreenTitle>
+
+      <View style={{ flexDirection: 'row', width: '100%' }} >
+        <Badge status='positive' />
+        <Badge status='negative' />
+      </View>
 
       <View style={{ flexDirection: 'row', width: '100%' }} >
         <Checkbox text='Sim' />
