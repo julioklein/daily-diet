@@ -1,61 +1,77 @@
-import { Image, View } from 'react-native';
 import { Plus } from 'phosphor-react-native';
-
-import { Button } from 'components/Button';
-import * as S from './styles';
-import { MealCard } from 'components/MealCard';
 import { OverviewCard } from 'components/OverviewCard';
-import { StatsCard } from 'components/StatsCard';
-import { Checkbox } from 'components/Checkbox';
-import { Badge } from 'components/Badge';
+import { Button } from 'components/Button';
+import { useTheme } from 'styled-components/native';
+import { SectionList } from 'react-native';
+import { MealCard } from 'components/MealCard';
+import * as S from './styles';
 
+import { dailyMeals } from './mockData';
 const Logo = require('assets/logo/Logo.png');
 
 export const Home = () => {
+  const theme = useTheme();
+  const iconColor = theme.COLORS.WHITE;
+
+  let healthyMealsCount = 0;
+  let unhealthyMealsCount = 0;
+
+
+  dailyMeals.forEach((day) => {
+    day.data.forEach((meal) => {
+      if (meal.healthy) {
+        healthyMealsCount += 1;
+      } else {
+        unhealthyMealsCount += 1;
+      }
+    })
+  });
+
+  const total = healthyMealsCount + unhealthyMealsCount;
+  const percentage = (healthyMealsCount / total) * 100;
+
+  console.log(percentage);
+
   return (
     <S.Container>
-      <Image source={Logo} />
-      <S.ScreenTitle>Home</S.ScreenTitle>
+      <S.Header>
+        <S.Logo source={Logo} />
+        <S.Avatar source={{
+          uri: 'https://github.com/julioklein.png'
+        }} />
+      </S.Header>
 
-      <View style={{ flexDirection: 'row', width: '100%' }} >
-        <Badge status='positive' />
-        <Badge status='negative' />
-      </View>
+      <S.OverViewArea>
+        <OverviewCard percentage={percentage} status={percentage >= 50.0 ? 'positive' : 'negative'} />
+      </S.OverViewArea>
 
-      <View style={{ flexDirection: 'row', width: '100%' }} >
-        <Checkbox text='Sim' />
-        <Checkbox text='Não' variant='negative' />
-      </View>
+      <S.NewMealSection>
+        <S.Text>Refeições</S.Text>
+        <Button
+          text='Nova refeição'
+          icon={() => <Plus size={18} color={iconColor} />}
+        />
+      </S.NewMealSection>
 
-      <View style={{ flexDirection: 'row', width: '100%' }} >
-        <Checkbox checked text='Sim' />
-        <Checkbox checked text='Não' variant='negative' />
-      </View>
-
-      <StatsCard total={22} text='melhor sequência de pratos dentro da dieta' />
-      <StatsCard total={109} text='refeições registradas' />
-
-      <View style={{ flexDirection: 'row', width: '100%' }} >
-        <StatsCard total={99} text='refeições dentro da dieta' status='positive' />
-        <StatsCard total={10} text='refeições fora da dieta' status='negative' />
-      </View>
-
-      <OverviewCard percentage={90.86} />
-      <OverviewCard percentage={30.21} status='negative' />
-
-      <MealCard time='20:00' meal='X-tudo' healthy={false} />
-      <MealCard time='16:00' meal='Whey protein com leite' />
-
-      <Button
-        text='Nova refeição'
-        icon={() => <Plus color='white' size={18} />}
-      />
-
-      <Button
-        text='Nova refeição'
-        icon={() => <Plus color='black' size={18} />}
-        variant='secondary'
-      />
+      <S.ListContainer>
+        <SectionList
+          sections={dailyMeals}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          renderSectionHeader={({ section: { title } }) => (
+            <S.DateWrapper>
+              <S.Date>{title.replaceAll('/', '.')}</S.Date>
+            </S.DateWrapper>
+          )}
+          renderItem={({ item }) => (
+            <MealCard
+              meal={item.title}
+              time={item.time}
+              healthy={item.healthy}
+            />
+          )}
+        />
+      </S.ListContainer>
     </S.Container>
   );
 };
