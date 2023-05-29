@@ -1,10 +1,12 @@
-import { SectionList } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
+`;
 
+export const Content = styled.View`
+  flex: 1;
   padding: 0 24px;
 `;
 

@@ -34,44 +34,46 @@ export const Home = () => {
 
   return (
     <S.Container>
-      <S.Header>
-        <S.Logo source={Logo} />
-        <S.Avatar source={{
-          uri: 'https://github.com/julioklein.png'
-        }} />
-      </S.Header>
+      <S.Content>
+        <S.Header>
+          <S.Logo source={Logo} />
+          <S.Avatar source={{
+            uri: 'https://github.com/julioklein.png'
+          }} />
+        </S.Header>
 
-      <S.OverViewArea>
-        <OverviewCard percentage={percentage} status={percentage >= 50.0 ? 'positive' : 'negative'} />
-      </S.OverViewArea>
+        <S.OverViewArea>
+          <OverviewCard percentage={percentage} status={percentage >= 50.0 ? 'positive' : 'negative'} />
+        </S.OverViewArea>
 
-      <S.NewMealSection>
-        <S.Text>Refeições</S.Text>
-        <Button
-          text='Nova refeição'
-          icon={() => <Plus size={18} color={iconColor} />}
-        />
-      </S.NewMealSection>
+        <S.NewMealSection>
+          <S.Text>Refeições</S.Text>
+          <Button
+            text='Nova refeição'
+            icon={() => <Plus size={18} color={iconColor} />}
+          />
+        </S.NewMealSection>
 
-      <S.ListContainer>
-        <SectionList
-          sections={dailyMeals}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-          renderSectionHeader={({ section: { title } }) => (
-            <S.DateWrapper>
-              <S.Date>{title.replaceAll('/', '.')}</S.Date>
-            </S.DateWrapper>
-          )}
-          renderItem={({ item }) => (
-            <MealCard
-              meal={item.title}
-              time={item.time}
-              healthy={item.healthy}
-            />
-          )}
-        />
-      </S.ListContainer>
+        <S.ListContainer>
+          <SectionList
+            sections={dailyMeals}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            renderSectionHeader={({ section: { title } }) => (
+              <S.DateWrapper>
+                <S.Date>{title.replaceAll('/', '.')}</S.Date>
+              </S.DateWrapper>
+            )}
+            renderItem={({ item }) => (
+              <MealCard
+                meal={item.title}
+                time={item.time}
+                healthy={item.healthy}
+              />
+            )}
+          />
+        </S.ListContainer>
+      </S.Content>
     </S.Container>
   );
 };
