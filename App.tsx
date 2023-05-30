@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Home } from 'screens/Home';
 import theme from './src/theme';
 import { Overview } from 'screens/Overview';
+import { MealForm } from 'screens/MealForm';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,7 +33,8 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar style="auto" />
         {/* <Home /> */}
-        <Overview />
+        {/* <Overview /> */}
+        <MealForm />
       </ThemeProvider>
     </View>
   );
