@@ -14,6 +14,7 @@ export const Container = styled(TouchableOpacity) <ButtonStyleProps>`
   max-height: 50px;
   border-radius: 6px;
   border-width: 1px;
+  padding: 0 24px;
 
   ${({ theme, variant }) => css`
     background-color: ${variant === 'primary' ? theme.COLORS.GRAY_2 : theme.COLORS.WHITE};

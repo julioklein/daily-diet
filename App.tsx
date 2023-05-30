@@ -9,6 +9,7 @@ import { Home } from 'screens/Home';
 import theme from './src/theme';
 import { Overview } from 'screens/Overview';
 import { MealForm } from 'screens/MealForm';
+import { MealSaved } from 'screens/MealSaved';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,7 +35,8 @@ export default function App() {
         <StatusBar style="auto" />
         {/* <Home /> */}
         {/* <Overview /> */}
-        <MealForm />
+        {/* <MealForm /> */}
+        <MealSaved />
       </ThemeProvider>
     </View>
   );
