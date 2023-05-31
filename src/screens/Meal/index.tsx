@@ -3,6 +3,7 @@ import { ArrowLeft, PencilSimpleLine, Trash } from 'phosphor-react-native';
 import { MealStyleProps } from './styles';
 import { Badge } from 'components/Badge';
 import { Button } from 'components/Button';
+import { DeleteMealModal } from 'components/DeleteMealModal';
 import * as S from './styles';
 
 type MealProps = {
@@ -15,6 +16,8 @@ export const Meal = ({ status = 'negative' }: MealProps) => {
   return (
     <>
       <S.Container status={status}>
+        <DeleteMealModal />
+        
         <S.Header>
           <S.BackButton>
             <ArrowLeft size={24} color={iconColor} />
