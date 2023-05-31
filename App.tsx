@@ -10,6 +10,7 @@ import theme from './src/theme';
 import { Overview } from 'screens/Overview';
 import { MealForm } from 'screens/MealForm';
 import { MealSaved } from 'screens/MealSaved';
+import { Meal } from 'screens/Meal';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,7 +37,8 @@ export default function App() {
         {/* <Home /> */}
         {/* <Overview /> */}
         {/* <MealForm /> */}
-        <MealSaved />
+        {/* <MealSaved /> */}
+        <Meal />
       </ThemeProvider>
     </View>
   );
