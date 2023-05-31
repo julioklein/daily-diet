@@ -5,12 +5,8 @@ import { StyleSheet, View } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Home } from 'screens/Home';
+import { Routes } from './src/routes';
 import theme from './src/theme';
-import { Overview } from 'screens/Overview';
-import { MealForm } from 'screens/MealForm';
-import { MealSaved } from 'screens/MealSaved';
-import { Meal } from 'screens/Meal';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,11 +30,7 @@ export default function App() {
     <View onLayout={onLayoutRootView} style={styles.container}>
       <ThemeProvider theme={theme}>
         <StatusBar style="auto" />
-        {/* <Home /> */}
-        {/* <Overview /> */}
-        {/* <MealForm /> */}
-        {/* <MealSaved /> */}
-        <Meal />
+        <Routes />
       </ThemeProvider>
     </View>
   );
