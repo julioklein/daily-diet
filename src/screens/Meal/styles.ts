@@ -1,13 +1,14 @@
 import styled, { css } from "styled-components/native";
 
 export type MealStyleProps = {
-  status?: 'positive' | 'negative';
+  healthy?: boolean;
 }
 
 export const Container = styled.SafeAreaView<MealStyleProps>`
   flex: 1;
-  background-color: ${({ theme, status }) =>
-    status === 'positive' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
+  background-color: ${({ theme, healthy }) =>
+    healthy ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
+  padding-top: 24px;
 `;
 
 export const Header = styled.View`
@@ -84,7 +85,7 @@ export const DateAndTime = styled.Text`
 `;
 
 export const ContentSafeArea = styled.SafeAreaView`
-  background-color: ${({theme}) => theme.COLORS.GRAY_7};
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
 `;
 
 export const ButtonContainer = styled.View`

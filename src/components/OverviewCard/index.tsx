@@ -13,7 +13,7 @@ export const OverviewCard = ({ percentage = 0, status = 'positive', ...rest }: O
         <S.Icon status={status} />
       </S.NavigtionButton>
 
-      <S.Percentage>{percentage.toString().replace('.', ',')}%</S.Percentage>
+      <S.Percentage>{percentage.toFixed(2).toString().replace('.', ',')}%</S.Percentage>
       <S.Text>das refeições dentro da dieta</S.Text>
     </S.Container>
   )

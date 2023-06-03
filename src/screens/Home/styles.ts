@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components/native';
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
+  padding-top: 24px;
 `;
 
 export const Content = styled.View`
@@ -52,7 +53,6 @@ export const Text = styled.Text`
 
 export const DateWrapper = styled.View`
   width: 100%;
-  padding-top: 32px;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 `;
 

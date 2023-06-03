@@ -1,20 +1,28 @@
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Button } from 'components/Button';
-import { MealSavedStyleProps } from './styles';
+import { MealSavedParams } from 'src/routes/app.routes';
 import * as S from './styles';
 
 const GoodMeal = require('../../../assets/illustration/GoodIllustration.png');
 const BadMeal = require('../../../assets/illustration/BadIllustration.png');
 
-export const MealSaved = ({ status = 'negative' }: MealSavedStyleProps) => {
-  const Illustration = status === 'positive' ? GoodMeal : BadMeal;
+export const MealSaved = () => {
+  const { params } = useRoute<MealSavedParams>();
+  const navigation = useNavigation();
+
+  const handleGoToHome = () => {
+    navigation.navigate('Home');
+  }
+
+  const Illustration = params?.healthy ? GoodMeal : BadMeal;
 
   return (
     <S.Container>
       <S.Content>
-        <S.Title status={status}>
-          {status === 'positive' ? 'Continue assim!' : 'Que pena!'}
+        <S.Title healthy={params?.healthy}>
+          {params?.healthy ? 'Continue assim!' : 'Que pena!'}
         </S.Title>
-        {status === 'positive' ? (
+        {params?.healthy ? (
           <S.Text>
             Você continua
             <S.Bold> dentro da dieta</S.Bold>
@@ -29,7 +37,7 @@ export const MealSaved = ({ status = 'negative' }: MealSavedStyleProps) => {
         )}
 
         <S.Illustration source={Illustration} />
-        <Button text='Ir para a página inicial' />
+        <Button onPress={handleGoToHome} text='Ir para a página inicial' />
       </S.Content>
     </S.Container>
   );

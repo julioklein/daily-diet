@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/native";
 
 export type BadgeStyleProps = {
-  status: 'positive' | 'negative';
+  healthy: boolean;
 };
 
 export const Container = styled.View`
@@ -19,7 +19,7 @@ export const Badge = styled.View<BadgeStyleProps>`
   width: 8px;
   margin-right: 8px;
   border-radius: 4px;
-  background-color: ${({ theme, status }) => status === 'positive' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
+  background-color: ${({ theme, healthy }) => healthy ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
 `;
 
 export const BadgeText = styled.Text`

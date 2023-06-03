@@ -1,11 +1,11 @@
 import * as S from './styles';
 import { BadgeStyleProps } from './styles';
 
-export const Badge = ({ status = 'positive' }: BadgeStyleProps) => {
+export const Badge = ({ healthy = true }: BadgeStyleProps) => {
   return <S.Container>
-    <S.Badge status={status} />
+    <S.Badge healthy={healthy} />
     <S.BadgeText>
-      {status === 'positive' ? ' dentro da dieta' : 'fora da dieta'}
+      {healthy ? ' dentro da dieta' : 'fora da dieta'}
     </S.BadgeText>
   </S.Container>
 };

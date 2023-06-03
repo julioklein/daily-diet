@@ -8,6 +8,7 @@ export const Container = styled.SafeAreaView<OverviewStyleProps>`
   flex: 1;
   background-color: ${({ theme, status }) =>
     status === 'positive' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
+  padding-top: 24px;
 `;
 
 export const Content = styled.View`

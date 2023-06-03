@@ -1,21 +1,32 @@
 import { ArrowLeft } from 'phosphor-react-native';
-import { OverviewCardStyleProps } from 'components/OverviewCard/styles';
-import * as S from './styles';
 import { useTheme } from 'styled-components/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
 import { StatsCard } from 'components/StatsCard';
 
-export const Overview = ({ status = 'positive' }: OverviewCardStyleProps) => {
+import { OverviewParams } from 'src/routes/app.routes';
+import * as S from './styles';
+
+export const Overview = () => {
   const theme = useTheme();
-  const iconColor = status === 'positive' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK;
+  const navigation = useNavigation();
+  const { params } = useRoute<OverviewParams>();
+  const iconColor = params.status === 'positive' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK;
+
+  const handleGoBack = () => {
+    navigation.navigate('Home');
+  }
 
   return (
-    <S.Container status={status}>
+    <S.Container status={params?.status}>
       <S.Header>
-        <S.BackButton>
+        <S.BackButton onPress={handleGoBack}>
           <ArrowLeft size={24} color={iconColor} />
         </S.BackButton>
 
-        <S.Title>90,86%</S.Title>
+        <S.Title>
+          {(params?.percentage || 0).toFixed(2).toString().replace('.', ',')}%
+        </S.Title>
         <S.Subtitle>das refeições dentro da dieta</S.Subtitle>
       </S.Header>
 
@@ -23,24 +34,24 @@ export const Overview = ({ status = 'positive' }: OverviewCardStyleProps) => {
         <S.StatsText>Estatísticas gerais</S.StatsText>
 
         <StatsCard
-          total={22}
+          total={params?.streakOfDays || 0}
           text='melhor sequência de pratos dentro da dieta'
         />
 
         <StatsCard
-          total={109}
+          total={params?.totalOfMeals || 0}
           text='refeições registradas'
         />
 
         <S.StatsGroup>
           <StatsCard
-            total={99}
+            total={params?.totalOfHealthyMeals || 0}
             text='refeições dentro da dieta'
             status='positive'
           />
 
           <StatsCard
-            total={10}
+            total={params?.totalOfUnhealthyMeals || 0}
             text='refeições fora da dieta'
             status='negative'
           />
