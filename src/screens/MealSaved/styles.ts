@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/native";
 
 export type MealSavedStyleProps = {
-  status?: 'positive' | 'negative';
+  healthy?: boolean;
 }
 
 export const Container = styled.View`
@@ -17,10 +17,10 @@ export const Content = styled.View`
 `;
 
 export const Title = styled.Text<MealSavedStyleProps>`
-  ${({ theme, status }) => css`
+  ${({ theme, healthy }) => css`
     font-family: ${theme.FONT_FAMILY.BOLD};
     font-size: ${theme.FONT_SIZE.XL}px;
-    color: ${status === 'positive' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
+    color: ${healthy ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
   `}
 
   text-align: center;

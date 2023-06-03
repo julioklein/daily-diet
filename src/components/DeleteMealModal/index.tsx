@@ -3,11 +3,12 @@ import * as S from './styles';
 import { Button } from 'components/Button';
 
 type DeleteMealModalProps = {
-
+  onDeleteMeal: () => void;
 } & ModalProps;
 
 export const DeleteMealModal = ({
   visible = true,
+  onDeleteMeal,
   onRequestClose,
   ...rest
 }: DeleteMealModalProps) => {
@@ -27,11 +28,13 @@ export const DeleteMealModal = ({
 
           <S.ButtonContainer>
             <Button
+              onPress={onRequestClose}
               text='Cancelar'
               variant='secondary'
             />
 
             <Button
+              onPress={onDeleteMeal}
               text='Sim, exluir'
             />
           </S.ButtonContainer>

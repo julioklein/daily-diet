@@ -1,16 +1,9 @@
-import styled, {css} from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
-export type MealFormStyleProps ={ 
-  status?: 'positive' | 'negative' | 'neutral';
-}
-
-export const Container = styled.SafeAreaView<MealFormStyleProps>`
+export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme, status}) => 
-    status === 'positive' ? theme.COLORS.GREEN_LIGHT :
-    status === 'negative' ? theme.COLORS.RED_LIGHT :
-    theme.COLORS.GRAY_5
-  };
+  background-color: ${({ theme }) => theme.COLORS.GRAY_5};
+  padding-top: 24px;
 `;
 
 export const Header = styled.View`
@@ -39,12 +32,12 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const FormSafeArea = styled.SafeAreaView`
-  background-color: ${({theme}) => theme.COLORS.GRAY_7};
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
 `;
 
 export const Content = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.COLORS.GRAY_7};
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 

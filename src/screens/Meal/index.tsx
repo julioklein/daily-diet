@@ -1,25 +1,59 @@
 import { useTheme } from 'styled-components/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { ArrowLeft, PencilSimpleLine, Trash } from 'phosphor-react-native';
-import { MealStyleProps } from './styles';
+
 import { Badge } from 'components/Badge';
 import { Button } from 'components/Button';
 import { DeleteMealModal } from 'components/DeleteMealModal';
+
+import { MealParams } from 'src/routes/app.routes';
 import * as S from './styles';
+import { useState } from 'react';
+import { mealDelete } from 'storage/meal/mealDelete';
 
-type MealProps = {
-} & MealStyleProps;
+export const Meal = () => {
+  const [visible, setVisible] = useState(false);
 
-export const Meal = ({ status = 'negative' }: MealProps) => {
+  const { params } = useRoute<MealParams>();
+  const navigation = useNavigation();
+
+  const { meal } = params;
+
   const theme = useTheme();
   const iconColor = theme.COLORS.GRAY_2;
 
+  const handleGoBack = () => {
+    navigation.navigate('Home');
+  }
+
+  const handleEditMeal = () => {
+    navigation.navigate('MealForm', { meal });
+  }
+
+  const handleDeleteMeal = () => {
+    setVisible(true);
+  }
+
+  const deleteMeal = async () => {
+    await mealDelete(meal);
+    navigation.navigate('Home');
+  }
+
+  const onRequestClose = () => {
+    setVisible(false);
+  }
+
   return (
     <>
-      <S.Container status={status}>
-        <DeleteMealModal />
-        
+      <S.Container healthy={!!meal.healthy}>
+        <DeleteMealModal
+          visible={visible}
+          onDeleteMeal={deleteMeal}
+          onRequestClose={onRequestClose}
+        />
+
         <S.Header>
-          <S.BackButton>
+          <S.BackButton onPress={handleGoBack}>
             <ArrowLeft size={24} color={iconColor} />
           </S.BackButton>
 
@@ -27,18 +61,19 @@ export const Meal = ({ status = 'negative' }: MealProps) => {
         </S.Header>
 
         <S.Content>
-          <S.Meal>Sanduíche</S.Meal>
+          <S.Meal>{meal.name}</S.Meal>
           <S.Description>
-            Sanduíche de pão integral com atum e salada de alface e tomate
+            {meal.description}
           </S.Description>
 
           <S.DateAndTimeLabel>Data e hora</S.DateAndTimeLabel>
-          <S.DateAndTime>12/08/2022 às 16:00</S.DateAndTime>
+          <S.DateAndTime>{`${meal.date} às ${meal.time}`}</S.DateAndTime>
 
-          <Badge status={status} />
+          <Badge healthy={!!meal.healthy} />
 
           <S.ButtonContainer>
             <Button
+              onPress={handleEditMeal}
               text='Editar refeição'
               icon={() => (
                 <PencilSimpleLine size={18} color={theme.COLORS.WHITE} />
@@ -46,6 +81,7 @@ export const Meal = ({ status = 'negative' }: MealProps) => {
             />
 
             <Button
+              onPress={handleDeleteMeal}
               text='Excluir refeição'
               icon={() => (
                 <Trash size={18} color={theme.COLORS.GRAY_1} />
