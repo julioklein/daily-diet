@@ -1,8 +1,8 @@
 ## Desafio proposto na Trilha React Native 2023 - Rocketseat
 ---
 <div>
-  <img src="./assets/ios.gif" width="180" height="360">
-  <img src="./assets/android.gif" width="180" height="360">
+  <img src="./src/assets/ios.gif" width="180" height="360">
+  <img src="./src/assets/android.gif" width="180" height="360">
 </div>
 
 <br><br>
